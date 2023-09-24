@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <h4>Caploitte EM</h4>
+        <button mat-button (click)="opened=!opened"><mat-icon>view_headline</mat-icon></button>
+        <!-- <button mat-button><mat-icon>home</mat-icon>Home</button> -->
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+     <mat-sidenav [(opened)]="opened" mode="push"> <!--two way binding -->
+        <mat-list>
+            <mat-list-item><a routerLink="/addEmployee" style="text-decoration: none;">Employee Registration</a></mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>              
+    </mat-sidenav-content>    
+</mat-sidenav-container>
+
+
