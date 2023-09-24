@@ -1,4 +1,4 @@
-export interface UserLoginDetail {
+export interface EmployeeSalaryDetail {
     empSalaryId:number;
     employeeId:number;
     salaryDate:Date;

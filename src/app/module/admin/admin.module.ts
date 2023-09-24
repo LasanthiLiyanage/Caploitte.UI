@@ -12,12 +12,14 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
 
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { SalaryManagementComponent } from './components/salary-management/salary-management.component';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { SalaryManagementComponent } from './components/salary-management/salary
     MatListModule,
     MatCardModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatInputModule,
+    NgbDatepickerModule 
   ]
 })
 export class AdminModule { }

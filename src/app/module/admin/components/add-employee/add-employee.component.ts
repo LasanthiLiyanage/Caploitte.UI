@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-employee',
@@ -8,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddEmployeeComponent implements OnInit{
   employeeForm: FormGroup;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  model: NgbDateStruct | undefined;
 
   constructor(private fb: FormBuilder) {
     this.employeeForm = this.fb.group({
@@ -29,5 +32,13 @@ export class AddEmployeeComponent implements OnInit{
 
   resetForm() {
     this.employeeForm.reset();
+  }
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 }

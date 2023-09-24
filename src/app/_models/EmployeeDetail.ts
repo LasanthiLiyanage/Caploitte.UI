@@ -1,4 +1,4 @@
-export interface User {
+export interface EmployeeDetail {
     employeeId: number;
     fullName: string;
     emailAddress: string;
