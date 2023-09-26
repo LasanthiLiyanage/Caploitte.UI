@@ -46,6 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    ReactiveFormsModule, // form validation
+    HttpClientModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],

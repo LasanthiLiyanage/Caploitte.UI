@@ -1,8 +1,6 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from 'src/app/service/auth.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import ValidateForm from 'src/app/helpers/validateform';
 
 @Component({
   selector: 'app-login',
@@ -10,29 +8,33 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  faLock = faLock;
-  loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
-  constructor(private auth: AuthService, private router: Router) {}
+  type:string = "password" // Property binding
+isText:boolean = false;
+eyeIcon:string = "fa-eye-slash"
+loginForm!: FormGroup;
 
-  ngOnInit(): void {
-    if (this.auth.isLoggedIn()) {
-      this.router.navigate(['admin']);
-    }
+constructor(private fb: FormBuilder){}
+
+  ngOnInit(): void {    
+    this.loginForm = this.fb.group({
+      username: ['',Validators.required],
+      password: ['',Validators.required]
+    })
   }
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      this.auth.login(this.loginForm.value).subscribe(
-        (result) => {
-          console.log(result);
-          this.router.navigate(['/admin']);
-        },
-        (err: Error) => {
-          alert(err.message);
-        }
-      );
+
+  hideShowPass(){
+    this.isText = !this.isText;
+    this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash"
+    this.isText ? this.type = "text" : this.type = "password"
+  }
+
+  onSubmit(){
+    if(this.loginForm.valid){
+        console.log(this.loginForm.value)
+    }else{
+      console.log('login invalid')
+      ValidateForm.validateAllFormFileds(this.loginForm);
+      alert("Your form is invalid.")
     }
   }
 }
